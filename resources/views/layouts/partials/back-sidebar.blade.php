@@ -6,7 +6,7 @@
             <a href="javascript:void(0)"><i class="ti-layout-grid2"></i></a>
             <div class="sidebarmenu">
                 <!-- Left navbar-header -->
-                <h3 class="menu-title">Dashboard</h3>
+                <h3 class="menu-title">{{ __('file.dashboard') }}</h3>
                 <ul class="sidebar-menu">
                     <li><a href="{{ route('backend.dashboard.prayertimes') }}">Prayer Times  </a></li>
                     <li><a href="{{ route('backend.subscriber.index') }}">Subscriber</a></li>
