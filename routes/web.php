@@ -16,7 +16,7 @@ Route::get('/', function () {
 
 Route::get('lang/{lang}', [LocalizationController::class, 'index'])->name('lang.switch');
 Route::group(['middleware' => ['auth', 'language']], function () {
-    Route::get('/download/{id}', [ResumeController::class, 'resumedownload'])->name('resume.download');
+    Route::get('/download/{slug}', [ResumeController::class, 'resumedownload'])->name('resume.download');
 
     Route::resource('resume',ResumeController::class);
     Route::namespace('App\Http\Controllers\Backend')->middleware(['auth'])->prefix('admin')->as('backend.')->group(function(){

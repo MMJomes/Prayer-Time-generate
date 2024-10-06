@@ -19,6 +19,7 @@ class ResumeController extends Controller
     public function create()
     {
     }
+
     public function store(Request $request)
     {
         if ($request->id && $request->input('id') != 0 && Resume::findOrFail($request->input('id'))) {
@@ -168,17 +169,18 @@ class ResumeController extends Controller
     public function show($id)
     {
     }
-    public function edit($id){
-        $resume = Resume::find($id);
+    public function edit($slug){
+        $resume = Resume::where('slug', $slug)->first();
         if($resume) {
             return view('frontend.resume.index', compact('resume'));
         }else{
             return response()->json("error", 200);
         }
     }
-    public function resumedownload(Request $request,$id)
+    public function resumedownload(Request $request,$slug)
     {
-        $resume = Resume::find($id);
+        //PLEEASE ADD HERE FOR PDF DOWNLOAD CODE
+        $resume = Resume::where('slug', $slug)->first();
         $mailNotification = new SendEmail($resume->name, "Congratulations!", "Your Request Have Been Approved By Admin");
         $resume->notify($mailNotification);
         $mailNotification->setSentSuccessfully(true);

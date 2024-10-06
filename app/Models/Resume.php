@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Resume extends Model
 {
-    use HasFactory,Notifiable;
+    use HasFactory,Notifiable,Sluggable;
     protected $table = 'resumes';
     protected $fillable = [
         'name',
@@ -36,8 +37,12 @@ class Resume extends Model
         'photo',
 
     ];
-
-    public function subscriber(){
-        return $this->belongsTo(Subscriber::class, 'subscriber_id');
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
     }
 }

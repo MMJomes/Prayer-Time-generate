@@ -323,13 +323,13 @@
 <script>
     function editData() {
         var data_id = {!! json_encode(session('data')) !!};
-        var id = data_id.id;
-        window.location.href = "{{ route('resume.edit', 'id') }}".replace('id', id);
+        var id = data_id.slug;
+        window.location.href = "{{ route('resume.edit', 'slug') }}".replace('slug', id);
     }
     function printData() {
         var data_id = {!! json_encode(session('data')) !!};
-        var id = data_id.id;
-        window.location.href = "{{ route('resume.download', 'id') }}".replace('id', id);
+        var id = data_id.slug;
+        window.location.href = "{{ route('resume.download', 'slug') }}".replace('slug', id);
     }
     document.addEventListener("DOMContentLoaded", function() {
         var showModal = {{ session('showModal') ? 'true' : 'false' }};
